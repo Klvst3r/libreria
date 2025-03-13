@@ -1,0 +1,54 @@
+El crud a realizar es un listado de libros desde cero
+
+
+1. configurar y crear proyecto
+
+Segunda forma de crear un proyecto
+
+Instalamos Laravel de manera global
+	$ composer global config bin-dir --absolute
+
+Exportamos el Path
+  $ export PATH="$HOME/.composer/vendor/bin:$PATH"
+  $ export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+
+Reiniciamos el shell
+	$ source ~/.bashrc
+
+Inicamos nuestro proyecto
+	$ laravel new crud
+
+
+Para poder iniciar un proyecto y configurarlo inicialmente debemos de seguri lso suignetes pasos:
+
+1. Crear el proyecto
+
+2. Verificar la instalación de composer
+	$ composer install	
+
+3. Crear nuestro archivo de variables de entorno
+	$ cp .env.example	.env
+
+4. Luego ejecutar clave de encriptacion del proyecto
+
+	$ php artisan key:generate
+
+4. Configurar la conexión a la base de datos.	
+
+En el archivo de configuración para conectar la Bd debemos considerar los siguientes valores o en su defecto los de la BD
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=libreria
+DB_USERNAME=dev
+DB_PASSWORD=desarrollo
+
+
+
+
+
+5. ejecutar las migraciones iniciales
+	$ php artisan migrate
+
+	
