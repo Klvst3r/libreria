@@ -9,3 +9,91 @@ Iniciar un Proyecto en Laravel
  Opcionalmente podríamos también indicar la versión de Laravel que queremos instalar, por ejemplo:
 
 composer create-project laravel/laravel mi-proyecto-laravel 5.5.*	
+
+
+Que es el patron Modelo-Vista-Controlador en Laravel
+
+El patrón Modelo-Vista-Controlador (MVC) es una arquitectura de software que separa una aplicación en tres componentes principales. En el caso de Laravel, un framework PHP, este patrón se utiliza para organizar y estructurar el código de manera clara y mantenible. Aquí te explico qué significa cada uno de estos componentes:
+1. Modelo (Model)
+
+El Modelo es la parte encargada de gestionar la lógica de datos de la aplicación. Se comunica con la base de datos, valida y manipula los datos antes de enviarlos al controlador o la vista.
+
+    Responsabilidades del Modelo:
+        Interacción con la base de datos: El modelo es responsable de la consulta de la base de datos, como obtener, insertar, actualizar o eliminar datos.
+        Definición de la estructura de los datos: En Laravel, los modelos están representados por clases que usualmente corresponden a las tablas de la base de datos (por ejemplo, Libro puede ser un modelo que representa una tabla libros).
+        Validación de datos: A menudo, los modelos también contienen lógica de validación de datos antes de guardarlos en la base de datos.
+
+    Ejemplo de un modelo en Laravel (Modelo Libro):
+
+    <?php
+
+    namespace App\Models;
+
+    use Illuminate\Database\Eloquent\Model;
+
+    class Libro extends Model
+    {
+        protected $fillable = ['nombre', 'descripcion', 'autor'];
+    }
+
+2. Vista (View)
+
+La Vista es la parte que se encarga de mostrar la interfaz de usuario (UI). Su principal función es recibir los datos que se le pasan desde el controlador y mostrarlos de forma adecuada para el usuario final.
+
+    Responsabilidades de la Vista:
+        Mostrar datos: La vista toma los datos que le pasan y los presenta al usuario. Esto incluye las plantillas HTML, la disposición de los elementos, y a menudo se utiliza JavaScript o CSS para mejorar la presentación.
+        Recibir entradas del usuario: La vista también puede permitir la interacción del usuario, como formularios o botones, pero no contiene lógica de negocio compleja.
+
+    En Laravel, las vistas se gestionan a través de archivos en la carpeta resources/views y generalmente usan el motor de plantillas Blade para renderizar HTML.
+
+    Ejemplo de una vista en Blade:
+
+    <!-- resources/views/libros/index.blade.php -->
+    <h1>Lista de Libros</h1>
+    <ul>
+      @foreach($libros as $libro)
+        <li>{{ $libro->nombre }} - {{ $libro->autor }}</li>
+      @endforeach
+    </ul>
+
+3. Controlador (Controller)
+
+El Controlador es la parte que gestiona la interacción entre el Modelo y la Vista. Recibe las solicitudes del usuario (por ejemplo, hacer clic en un enlace o enviar un formulario), procesa esos datos, y luego pasa la información al Modelo o a la Vista para que la respuesta sea devuelta al usuario.
+
+    Responsabilidades del Controlador:
+        Manejar solicitudes: El controlador recibe la solicitud del usuario (GET, POST, PUT, DELETE, etc.) y decide qué acción tomar.
+        Llamar al Modelo: El controlador se comunica con el Modelo para obtener o modificar datos.
+        Pasar datos a la Vista: Después de interactuar con el Modelo, el controlador pasa los datos necesarios a la Vista para ser presentados al usuario.
+
+    Ejemplo de un controlador en Laravel:
+
+    <?php
+
+    namespace App\Http\Controllers;
+
+    use App\Models\Libro;
+    use Illuminate\Http\Request;
+
+    class LibroController extends Controller
+    {
+        public function index()
+        {
+            $libros = Libro::all(); // Obtiene todos los libros de la base de datos
+            return view('libros.index', compact('libros')); // Pasa los datos a la vista
+        }
+    }
+
+¿Cómo interactúan estos tres componentes?
+
+    El Usuario hace una solicitud (por ejemplo, accede a la página para ver los libros).
+    El Controlador recibe la solicitud y decide qué hacer. Por ejemplo, si el controlador tiene que mostrar todos los libros, hará una consulta al Modelo.
+    El Modelo obtiene los datos de la base de datos, y el controlador le pasa estos datos a la Vista.
+    La Vista presenta los datos al usuario, mostrándolos en la interfaz de usuario de forma adecuada.
+
+Resumen del flujo MVC en Laravel:
+
+    Modelo: Interactúa con la base de datos y maneja la lógica de negocio.
+    Vista: Presenta los datos al usuario.
+    Controlador: Interactúa con el Modelo y la Vista para manejar la lógica de la solicitud y la respuesta.
+
+Este patrón ayuda a mantener el código organizado, facilitando el mantenimiento y la escalabilidad de la aplicación.

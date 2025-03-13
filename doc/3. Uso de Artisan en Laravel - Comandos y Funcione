@@ -1,0 +1,79 @@
+3. Uso de Artisan en Laravel - Comandos y Funciones
+
+
+Comandos:
+-----
+
+Ejecucion de migraciones
+	$ php artisan migrate
+		[ejecuta el metodo up() de cada una de las migraciones]
+
+
+Reconstruyo la Bd y alimento con la informción inicial
+	$ php artisan migrate --seed
+
+
+Eliminar tablas de ese lote especifico.
+	$ php artisan migrate:rollback		
+
+Elimiar todas las tablas del proyecto  *** CUIDADO SI YA HAY VALORES EN LA BD ****
+	$ php artisan migrate:fresh	
+
+
+Retroceder todas las migraciones y volverlas a ejecutar
+	$ php artisan migrate:refresh
+
+		Equivalente a.
+			$ php artisan migrate:rollback
+			$ php artisan migrate
+
+El comando php artisan migrate:refresh en Laravel se utiliza para retroceder todas las migraciones y luego ejecutarlas nuevamente. Es muy útil cuando deseas reiniciar tu base de datos desde cero, especialmente durante el desarrollo cuando estás realizando muchos cambios en las migraciones.
+
+¿Qué hace migrate:refresh?
+
+    Revierte todas las migraciones: El comando primero deshace todas las migraciones que se han ejecutado (utilizando migrate:rollback).
+    Ejecuta nuevamente todas las migraciones: Luego, vuelve a ejecutar todas las migraciones desde cero (como si las estuvieras ejecutando por primera vez).
+
+Comando:
+
+php artisan migrate:refresh
+
+Opciones adicionales:
+
+    --seed: Si deseas que las migraciones también rellenen la base de datos con datos predeterminados (semillas), puedes añadir la opción --seed:
+
+	$ php artisan migrate:refresh --seed
+
+
+
+Eliminar todas las migraciones sin volver a ejecutarlas
+	$ php artisan migrate:reset
+
+
+Ejecuta la migración específica:
+	$ php artisan migrate --path=/database/migrations/2025_03_13_000000_nombre_de_migracion.php
+
+
+Crear modelo
+    $ php artisan make:model --help
+
+Se crea el model o y la migracion desde la terminal
+	$ php artisan make:model Libro -m    
+
+
+Crea un seeder con el siguiente comando (Libros):
+
+	$ php artisan make:seeder LibroSeeder	
+
+Ejecutar el seeder (Libros)	
+	$ php artisan db:seed --class=LibroSeeder
+
+Ejecutar todos los seeders a la vez 	
+	$ php artisan db:seed
+
+
+Crear controlador
+    $ php artisan make:controller     
+
+Ayuda dsobre el comando anterior
+    $ php artisan make:controller --help    

@@ -1,0 +1,101 @@
+4. Seeders e Laravel
+
+
+Para crear un seeder en Laravel que agregue estos registros a la tabla libros, debes seguir estos pasos:
+Paso 1: Crear el seeder
+
+Primero, crea un seeder con el siguiente comando:
+
+	$ php artisan make:seeder LibroSeeder
+
+Este comando generará un archivo en database/seeders/LibroSeeder.php.
+Paso 2: Editar el seeder
+
+Abre el archivo LibroSeeder.php y modifícalo para que agregue los registros iniciales. El archivo se verá algo así:
+
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class LibroSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('libros')->insert([
+            [
+                'nombre' => 'El principito',
+                'descripcion' => 'Poético, filosófico y conmovedor - Texto',
+                'autor' => 'Antoine de Saint Exupery',
+            ],
+            [
+                'nombre' => 'La Odisea',
+                'descripcion' => 'Epopeya Clasica Griega',
+                'autor' => 'Homero',
+            ],
+        ]);
+    }
+}
+
+Paso 3: Ejecutar el seeder
+
+Una vez que hayas creado el seeder, puedes ejecutarlo con el siguiente comando:
+
+php artisan db:seed --class=LibroSeeder
+
+
+Nota:
+	Cuando trabajamos con Seeders utilizamos la clase DB, ppor ello para evitar errores del tipo:
+	 Error 
+
+  		Class "Database\Seeders\DB" not found
+
+
+	El error que estás viendo (Class "Database\Seeders\DB" not found) indica que Laravel no puede encontrar la clase DB. Esto se debe a que no has importado la clase DB al principio del archivo de tu seeder.
+
+Para solucionarlo, solo necesitas agregar la importación de la clase DB al inicio del archivo LibroSeeder.php.
+
+Paso 1: Agregar la importación de DB
+
+	Abre tu archivo <seeder_especifico>.php y agrega la siguiente línea al principio del archivo, justo después de las demás importaciones:
+
+		use Illuminate\Support\Facades\DB;
+
+
+Ahor apodremos ejecutar el seeder sin errores.
+
+
+
+Este comando insertará los dos registros en la tabla libros.
+Paso 4: (Opcional) Ejecutar todos los seeders
+
+Si tienes otros seeders y deseas ejecutar todos los seeders a la vez (incluido el LibroSeeder), puedes usar simplemente:
+
+	$ php artisan db:seed
+
+Resumen de la estructura:
+
+    Comando para crear el seeder: php artisan make:seeder LibroSeeder
+    Código en el seeder para insertar los dos registros:
+
+DB::table('libros')->insert([
+    [
+        'nombre' => 'El principito',
+        'descripcion' => 'Poético, filosófico y conmovedor - Texto',
+        'autor' => 'Antoine de Saint Exupery',
+    ],
+    [
+        'nombre' => 'La Odisea',
+        'descripcion' => 'Epopeya Clasica Griega',
+        'autor' => 'Homero',
+    ],
+]);
+
+    Ejecuta el seeder: php artisan db:seed --class=LibroSeeder
