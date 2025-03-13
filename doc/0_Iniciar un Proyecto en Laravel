@@ -1,0 +1,11 @@
+Iniciar un Proyecto en Laravel
+
+
+ El comando para crear el proyecto depende de Composer. Es el siguiente:
+
+	composer create-project laravel/laravel mi-proyecto-laravel
+
+
+ Opcionalmente podríamos también indicar la versión de Laravel que queremos instalar, por ejemplo:
+
+composer create-project laravel/laravel mi-proyecto-laravel 5.5.*	
