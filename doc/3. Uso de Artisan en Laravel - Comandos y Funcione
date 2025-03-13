@@ -72,8 +72,24 @@ Ejecutar todos los seeders a la vez
 	$ php artisan db:seed
 
 
+Instanciar el proyecto en un puerto especifico
+	$ php artisan serve  (Trabaja en el puerto 80)
+	$ php artisan serve --port=8000
+	$ php artisan serve --port=7000
+
+
+Crear un Modelo (Libro)
+	$ php artisan make:model Libro
+
 Crear controlador
     $ php artisan make:controller     
 
 Ayuda dsobre el comando anterior
     $ php artisan make:controller --help    
+
+Ej
+	Crear el controlador de Libro
+		$ php artisan make:controller LibroController
+
+Crear un controlador con los métodos predefinidos para un CRUD		
+	$ php artisan make:controller LibroController --resource

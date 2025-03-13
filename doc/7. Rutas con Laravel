@@ -1,0 +1,67 @@
+6. Rutas con Laravel
+
+Las Rutas en laravel es parte de la estrcutuctura del MODEL-Vista-Controlador que permite enlazar las URL con las funciones del controlador.
+
+
+
+Para confugurar nuestra ruta debemo ir al archivo de rutas (routes):
+
+Dentro de /resources/views/
+
+    ej.
+        alan.blade.php
+
+Es necesarios que para que Larael entienda como una vista debe tener la extension .blade.php
+
+        
+
+
+Pero en la vista tenemos un archivo llamado
+    welcome.blade.php
+
+Crar las vistas y reamos una carpeta llamada
+    libros
+
+Dentro tendremos todas las vistas a utilizar
+    create.blade.php
+    read.blade.php
+    update.blade.php
+    delete.blade.php
+
+Tenemos las las vistas de nuestro CRUD (Create, Read, Update y Delete)
+
+
+
+Manejo de solicitudes HTTP en PHP
+-----------------
+
+Route::get | Consulta Route::post | Guarda Route::delete | Elimina Route::put | Actualiza
+
+Rutas:
+
+Routes Nuestro trabajo comienza en el desarrollo y definición de las rutas (routes), estas son unas de las capas mas importantes en el Framework debido a que el route se encarga de manejar el flujo de solicitudes y respuestas, desde y hacia el cliente.
+
+La carpeta Routes está compuesto por: 
+• api.php: Aquí se definen todas las rutas de la APIs que puedan tener nuestra app. 
+• channels.php: Aquí se definen los canales de transmisión de evento (ej. notificaciones en tiempo real). 
+• console.php: en este archivo definimos comando de consola. 
+
+• web.php: Aquí se definen las rutas de nuestra aplicación web (HTTP). (Utilizar principalmente)
+
+
+Dentro de la carpeta de rutas:
+
+web.php:
+
+Todo lo que tenga que ver con desarrollo web, trabajar con este archivo significa que se ativa todo lo ncesario a nivel, web, como los estados de sesiones, protección a formularios, y otras configuraciones.
+
+api.php
+Si se va a desarrollar una api se cuenta con un archivo independientes.
+
+ console.php
+ Si contamos con archivos de consola contamos con este archivo
+
+channels.php
+ Si vamos a estra trabajando con distincos canales de eventos para proyectos que eponden en tiempo real existe este archivo.
+
+

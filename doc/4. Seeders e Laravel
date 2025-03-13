@@ -5,8 +5,9 @@ Para crear un seeder en Laravel que agregue estos registros a la tabla libros, d
 Paso 1: Crear el seeder
 
 Primero, crea un seeder con el siguiente comando:
+    $ php artisan make:seeder LibroSeeder
 
-	$ php artisan make:seeder LibroSeeder
+	$ php artisan make:seeder RevistaSeeder
 
 Este comando generará un archivo en database/seeders/LibroSeeder.php.
 Paso 2: Editar el seeder
@@ -49,6 +50,7 @@ Paso 3: Ejecutar el seeder
 Una vez que hayas creado el seeder, puedes ejecutarlo con el siguiente comando:
 
 php artisan db:seed --class=LibroSeeder
+php artisan db:seed --class=RevistaSeeder
 
 
 Nota:

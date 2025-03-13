@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\LibroController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*Route::get('/', function () {
+    return view('alan');
+});*/
+
+
+Route::get('/', [LibroController::class, 'index'])->name('index');
+
+Route::get('/create', [LibroController::class, 'create'])->name('libro.create');
