@@ -1,0 +1,73 @@
+clases - Metododos - Laravl
+	Caracteristicas  - Propiedades
+	Acciones (realizar) - Metodos
+
+
+Metodos REST - CRUD
+	Index - contenido COMPLETO de la bd
+	Create - Insertar un registro - formulario
+	Store - Guarda el registro en la bd enviada desde el formualario
+	Show - Visualiza un registro ID
+	Edit - Editar UN registro a travez de un ID
+	Update - formulario para editar UN registro
+	Destroy - Eliminar UN registro indicado por un ID
+
+	REST
+
+
+
+Boostrap
+
+Bootstrap es un framework front-end de código abierto que facilita el desarrollo de sitios web y aplicaciones web. Fue creado por Mark Otto y Jacob Thornton en Twitter, y su propósito principal es proporcionar una colección de herramientas, componentes y plantillas predefinidas para acelerar el diseño y la maquetación de páginas web.
+
+
+https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+Integracion al Layout
+
+
+¿Cómo se usa Bootstrap?
+
+Para usar Bootstrap en un proyecto, generalmente tienes dos opciones:
+
+    1. Incluir el enlace a los archivos CDN: Esto permite acceder a Bootstrap sin necesidad de descargar nada. Solo debes agregar un enlace al archivo CSS de Bootstrap en el encabezado de tu HTML, y los scripts JS de Bootstrap al final del cuerpo.
+
+    2. Descargar los archivos de Bootstrap: Puedes descargar los archivos CSS y JS de Bootstrap y alojarlos en tu propio servidor o proyecto.
+
+
+
+CDN - Bootstrap
+
+
+Un CDN (Content Delivery Network, o Red de Distribución de Contenidos) es una red de servidores distribuidos geográficamente que trabajan juntos para entregar contenido web de manera más rápida y eficiente a los usuarios.
+
+El propósito principal de un CDN es reducir el tiempo de carga de una página web o la entrega de otros tipos de contenido (como imágenes, videos, archivos JavaScript, etc.) al colocar copias de ese contenido en múltiples servidores ubicados en diferentes partes del mundo. Cuando un usuario solicita ese contenido, el servidor más cercano geográficamente a su ubicación es el que se encarga de entregarlo, lo que reduce la latencia y mejora la velocidad de carga.
+
+
+ejemplo de un layuut - template
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo Bootstrap</title>
+  <!-- Enlace al CSS de Bootstrap desde el CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="text-center mt-5">¡Hola, Bootstrap!</h1>
+    <button class="btn btn-primary">Botón Bootstrap</button>
+  </div>
+
+  <!-- Enlace a los scripts JS de Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+

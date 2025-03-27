@@ -10,3 +10,28 @@ Dentro de el vamos a poder colocar los datos paa poder gestionar la inforamcicó
     public function create(){
         return view('libro.create');
     }
+
+
+Crear un controlador con los métodos básicos del CRUD
+
+Si deseas crear un controlador con los métodos predefinidos para un CRUD, puedes usar el parámetro --resource cuando generes el controlador.
+
+El comando sería:
+
+php artisan make:controller LibroController --resource
+
+¿Qué hace este comando?
+
+    --resource: Este parámetro genera un controlador con los métodos predeterminados para las operaciones CRUD (Create, Read, Update, Delete), es decir, agrega los métodos necesarios para manejar un CRUD completo.
+
+Los métodos generados
+
+Al ejecutar el comando anterior, Laravel creará un archivo de controlador con los siguientes métodos básicos:
+
+    index(): Muestra una lista de todos los registros (Leer).
+    create(): Muestra el formulario para crear un nuevo registro (Crear).
+    store(): Maneja la lógica para almacenar un nuevo registro en la base de datos (Guardar).
+    show($id): Muestra un registro específico basado en su ID (Leer).
+    edit($id): Muestra el formulario para editar un registro existente (Actualizar).
+    update(Request $request, $id): Maneja la lógica para actualizar un registro existente (Actualizar).
+    destroy($id): Elimina un registro de la base de datos (Eliminar).    

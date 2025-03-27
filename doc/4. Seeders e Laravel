@@ -101,3 +101,8 @@ DB::table('libros')->insert([
 ]);
 
     Ejecuta el seeder: php artisan db:seed --class=LibroSeeder
+
+
+Referenceias:
+https://solibeth.net/aprende-usar-seed-en-laravel    
+https://codea.app/blog/semillas-en-laravel
