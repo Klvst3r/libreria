@@ -1,0 +1,231 @@
+17. Para Eliminar un Registro
+
+1- Necesito tener la ruta para eliminar un registro
+
+2 -La ruta va a enviar hacia un metodo "destroy", y dentro de ese metodo, va a capturar el ID del registro a eliminar, para que este sea redirigido hacia el metodo "destroy" 
+
+3-Al no tener la vista destroy se procesara la ligica de eliminacion de informaicon en el metodo
+	
+
+4-En el metodo destroy se carga el Id del registroi a eliminar desde el Request (Objeto) a traves de su id
+
+	$libros->id
+
+5-Para poder eliminar un rergistro de acuerdo al ID recibido, se tendra en el formualrio un boton de eliminar que contenga el id,
+
+Ne Laravel no tenemos un metodo REST para elimimnar por lo tanto utlizaremos un formualario que envia el ID haca el metodo destroy
+
+	Ne el metodo  recibe el ID a traves de:
+		 $libro->id
+
+
+
+6-En la vista index, se tendra el boton de eliminar para cada registro y los campos del registro captura por el ID
+
+	Sera a traves de elementos de formualrio
+
+		
+
+    donde captruramos el valor del atributo
+    	Ej nombre que se identifica por el Id del Objeto
+
+ 		$libro->id
+
+    
+7. En el controlador se crea el metodo destyoy que recibe la inforamcion del objeto $libros identificado por su ID
+
+	$libros->id
+
+	elimina la ifnroamcion del registro por su ID
+
+
+9. La eliminzacion del registro podra ser visualizada en la vista index.
+
+
+
+
+Procedimiento para borar registro
+------------------------------
+Para eliminar lo primero que tenemos que hacer es agregar en nuestras rutas dos rutas
+
+La primera para poder elimnar el registro
+
+    Route::get('/libro/delete', [LibroController::class, 'delete'])->name('libro.delete');
+
+
+La segunda para eliminar los registros de la BD
+
+    //Eliminar los registros
+    Route::post('/libro/destroy', [LibroController::class, 'destroy'])->name('libro.destroy');
+
+Ahora debemos especificar en el controlador  la ruta para mostrar la vista primero, en este caso eliminar
+
+ public function delete(){
+        //Aquí deberíamos mostrar un formulario para confirmar la eliminación de un libro
+        $libro = Libro::all();
+
+        //Por ahora retornamos un mensaje de confirmación
+        return view('libro.delete', compact('libro'));
+    }
+
+Asi tambien necesitamos la ruta para poder destruir o eliminar nuestro libro 
+
+ public function destroy(Libro $libro){
+    
+    }
+
+Vamos a recibir mediante Reuest los valores provenientes del formulario, en este caso vamos a utilizar un id para borrar los datos.
+
+Esta es una forma de recibir de un input de un formulario, en este caso $idLibro que es el id del formulario en HTML que vamos a desarrollar.
+
+Como ya tenemos el id entonces podemos desarrollar lo sigueinte:
+
+   public function destroy(Request $request){
+        $Id = $request->input('IdLibro');
+        /*Como ya tenemos el Id podemos simpkenete decir qure
+        Mediante eloquent vamos a buscar el ibro mediante el Id especificado
+        */
+        $libro = Libro::find($Id);
+        //Y luego eliminamos el libro
+        // Si encontramos nuestro libro, enonces lo podemos borrar
+        if($libro){
+            $libro->delete();
+            //Redirigimos con mensaje de éxito
+            return redirect()->back()->with('success', 'Registro del libro eliminado con éxito');
+        }else{
+            return redirect()->back()->with('error', 'Registro del libro no encontrado');
+        }
+
+
+Falta comprobar su funcionamiento
+
+Claramente necesitamos una vista para poder eliminar un registr de la Bd
+
+
+
+//vista para eliminar un registro
+
+En este caso tenemos nuestra vista para eliminar nuestro registro.
+
+Podremos reutilizar el formulario de crear, todo lo que se tienen ahi
+
+-----
+@extends('layouts.app')
+
+@section('content')
+<div class="card-body">
+    <h5 class="card-title">Eliminar un libro</h5>
+    <p>¿Estás seguro de que deseas eliminar el siguiente libro?</p>
+
+    <form method="POST" action="{{ route('libro.destroy', $libro->id) }}">
+        @csrf
+        @method('DELETE')
+
+        <div class="form-group">
+            <label for="nombre">Nombre del libro:</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $libro->nombre }}" disabled>
+        </div>
+        
+        <div class="form-group">
+            <label for="autor">Autor:</label>
+            <input type="text" class="form-control" id="autor" name="autor" value="{{ $libro->autor }}" disabled>
+        </div>
+
+        <button type="submit" class="btn btn-danger mt-3">Eliminar</button>
+    </form>
+
+    @if(session('success'))
+    <div class="alert alert-success mt-3" role="alert">
+        {{ session('success') }}
+    </div>
+    @endif
+</div>
+@endsection
+
+
+
+
+
+Pegamos en nuestra vsta de eliiminar
+
+Aunque aca solo necesitamos un valor, la descricion y el autor se pueden incluir
+
+Hay muchas formas de eleiminar registros en un Bd, el ejemplo que tenmos es borarr con el Id del libro 
+
+<input type="text" class="form-control" id="IdLibro" name="IdLibro" required>
+
+Que es el valor que nuestro controlador esta esperando
+
+$Id = $request->input('IdLibro');
+
+Lo que es necesario es que se escriba tal cual para poder ecibirlo de forma correcta
+
+Tenemos entonces el success para cuando se ejecuta con exito, el codigo en nuestro controlador
+
+Asi tambien tenemos el error para cuando no se puede borrar el libro
+
+Registrando un Id que no existe
+
+De esta forma hemos podido eleiminar una aplicación con las cuatro funciones de todo software llamada CRUD.
+
+De esta forma podemos ya a empezar nuestros poryectos hacienco uso de un software con Laravel
+
+
+
+Resumen:
+
+1. Creacion de las rutas para confirmar si se desea eliminar y eliminar el registro completamente
+
+	//7. Delete Preguntar si realmente quiere elimnarse el registro
+	Route::get('/delete/{id}', [LibroController::class, 'delete'])->name('libros.delete');
+
+	// Destroy - Elimna el registro de la BD
+	Route::delete('/delete/{id}', [LibroController::class, 'destroy'])->name('libro.destroy');
+
+2. Para el caso del metodo update que recibe el objeto $libro envia los datos del mismo aobjeto hacia una vista para su confirmacion o cancelacion de la eliminacion de ese registro
+
+	 public function delete($id)
+    {
+        
+        $libro = Libro::findOrFail($id); // Si no se encuentra, lanza un error 404
+    
+        
+        return view('libros.delete', compact('libro'));
+    }	
+
+ 3. Se crea la vista de confirmacion 
+
+ 	 <form method="POST" action="{{ route('libro.destroy', $libro->id) }}">
+        @csrf
+        @method('DELETE')
+
+        <div class="form-group">
+            <label for="nombre">Nombre del libro:</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $libro->nombre }}" disabled>
+        </div>
+        
+        <div class="form-group">
+            <label for="autor">Autor:</label>
+            <input type="text" class="form-control" id="autor" name="autor" value="{{ $libro->autor }}" disabled>
+        </div>
+
+        <button type="submit" class="btn btn-danger mt-3">Eliminar</button>
+    </form>
+
+si se confirma el mismo formualrio enviara al metodo destroy para su eliminacion de la tabla y de la bd
+
+	 
+    public function destroy($id)
+    {
+     
+        $libro = Libro::findOrFail($id);
+
+     
+        $libro->delete();
+
+     
+        return redirect()->route('index')->with('success', 'El libro se ha eliminado con éxito.');
+    }
+
+4. Redirige hacia el index previo mensaje. 
+        

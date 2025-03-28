@@ -1,0 +1,123 @@
+14. Leer Informacion desde la BD
+
+ Vamos a nuestra vista que se llama index.blade.php
+
+ Vamos a crear la parte frontal la ruta y la funcionalidad de recuperacion de los valores de la bd
+
+ Para nuesra funcion leer:
+
+ 
+ 1. Definimos la ruta para ller los datos
+
+ Route::get('/libro/read', [LibroController::class, 'read'])->name('libro.read');
+
+ Ya tendriamos la ruta y ahora vamos a nuestro archivos del controller para crear nuestra funion de leer
+
+
+
+cuando Hacemos la lectura de la inforamacion de alguna tabla o conjunto de tablas a trabes del ORM de Laravel lo hacemos en nuestro casoa  traves del metodo 
+
+read
+show 
+
+en nuestro caso lo definiciomos en el metodo 
+index, por que deseamos que cada que cargue el sistema, nos visualice de manera inicial toda la infoamcion que existe de nuestra tabla libros.
+
+A manera de ejemplo, pero pueden graficar, o tablas o un conjunot d einformacion que el desarrador quiera mostrar hacia el usuario cuando ingresa la aplicación.
+
+
+1. como lo definimos en index creamos nuestra ruta 
+
+	Route::get('/', [LibroController::class, 'index'])->name('index'); 
+
+2. en el contrlador y especificamente en el metodo index, mandamos a llamar toda la información de la tabla libros
+
+a traves del Request de Laravel creamos el objeto $libros que esta estructurado en forma de arreglo, y atraves del Modelo "Libros" mandamos a llamar toda la inforamcion de nuestra tabla
+
+	$libros = Libro::all();
+
+
+	Ej:
+		En nuestro controlador vamos a crear una funcionalidad para leer
+
+	    public function index(){
+	     //Obtenemos toda la inforamcion de la tabla libros
+	     $libros = Libro::all();
+
+	     //dd($libros);
+	    }
+
+
+
+3. ahora ya tenemos tola la informacion de todos los rgistros de la tabala Libros y queremos enviarla a la vista
+
+	Para depurar lo podemos hace rcon un dd();
+
+
+
+	En Laravel, dd() es una función que significa Dump and Die (Volcar y morir). Esta función es muy útil para la depuración de código. Lo que hace es imprimir (volcar) el contenido de una variable o un objeto, y luego detiene la ejecución del script inmediatamente después, evitando que el resto del código se ejecute.
+
+	Aquí te dejo un ejemplo de cómo funciona:
+
+	$usuario = User::find(1);
+	dd($usuario);
+
+	Al ejecutar esto, Laravel imprimirá el contenido de la variable $usuario (en este caso, los datos del usuario con id = 1), y luego detendrá la ejecución del script, lo que te permitirá ver el valor sin que el código continúe ejecutándose.
+
+	Es muy útil para ver rápidamente el contenido de variables y objetos durante el desarrollo sin necesidad de escribir código más complicado de depuración.	
+
+
+si queremos visualizar el contenido devuelto por el objetro $libros hacemos el dd();
+
+	dd($libros);
+
+Enviamos el objeto libros hacia la vista donde quiero visualizar la infoamcion
+
+
+
+La salida nos arroja un array con resultados de valores y datos correspondientes al array y si nos dirigimos a los atributos, encontraremos los resultados de los datos de la tabla
+
+Esto indica que la aplicaicon ya esta recibidendo los valores de la bd de Mysql ¿, lo que necesitamos ahora es pasar esa inforamcion a la vista
+
+Lo hacemos de la siguiente manera:
+
+	return view('libros.index',compact('libros'));
+
+4. Trabajar cn el objeto enviado por el metod oindex desde el controlador hacia la vista "index"		
+
+
+
+
+on esto ya estamos pasando el objeto que trae todos los datos de la bd
+
+Con esto no hemos tenido la necesidad de crear algo como un aconsulta similar aconsulta
+
+Select * from libros;
+
+sino que usamos una sola linea para leer todos lo libros y traerlos a la vista.
+
+Ahora en la vista vamos a estrcuturar la vista
+
+	index.blade.php
+
+	
+
+
+
+ Referencia:
+
+ https://www-loopple-com.translate.goog/components/bootstrap/charts?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc
+
+ https://startbootstrap.com/template/sb-admin
+
+ https://startbootstrap.com/previews/sb-admin
+
+
+ Dashboards TailwindCSS
+ https://themesbrand.com/minia-tailwindcss/?storefront=envato-elements
+
+ https://windframe.dev/?gad_source=1&gclid=Cj0KCQjwkZm_BhDrARIsAAEbX1HwbwOWVcLiQYhjyzq0PmzYW7pMvGhYOkVyh0RG47oA_RELgqFU2U8aAl2MEALw_wcB
+
+ Graficos
+ https://flowbite-com.translate.goog/docs/plugins/charts/?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc
+

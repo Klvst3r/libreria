@@ -1,0 +1,84 @@
+16. Para Editar un Registro
+
+1-OK. Necesito ahora tener la ruta para Editar un registro
+
+2 -OK. La ruta va a enviar hacia un metodo "edit", y dentro de ese metodo, va a capturar el ID del registro a editar, para que este sea redirigido hacia una vista "edit" en esta caso hacia un modal
+
+3-OK. Al no tener la vista edit se crea esa vista - Modal
+	Falta el formulario para editar los registros
+
+4-OK. En la vista se va a insertar un modal para cargar los valores del objeto $libro con el ID id
+
+	$libros->id
+
+5-OK. Para poder editar un rergistro de acuerdo al ID recibido, se tendra un formualrio capturando los valores de ese registro.
+
+	Ne el modal se recibe el ID a traves de:
+		id="modal{{ $libro->id }}"
+
+
+
+6-OK. En la vista index, se tendra el boton de editar para cada registro y los campos del registro captura por el ID
+
+	Sera a traves de elementos de formualrio
+
+		<div class="form-group">
+                        <label for="nombre">Nombre: </label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $libro->nombre }}" required>
+                    </div>
+
+    donde captruramos el valor del atributo
+    	Ej nombre que se identifica por el atributo name en este caso
+
+    		name="nombre"
+
+    Para color la inforamción del registro sera en el atributo value
+
+    		value="{{ $libro->nombre }}"
+
+    	donde se devuelto el objeto $libro y el atributo respectivo nombre que corresponde con el mimso nombre del campo de la tabla libros
+
+
+
+7. El formulario del modal tendra un boton para actualizar la inforamcion a la bd enviando la informacion y el Request hacia un nuevo metodo "update"
+
+	Debajo de mi formulario se colocal el boton:
+
+		<button type="submit" class="form-control btn btn-success mt-3">Actualizar</button>
+
+
+	La ruta a procesar esta establecida en el atributo del formulario accion, al inicio del formulario de edit
+
+    	action="{{ route('libros.update', $libro->id) }}
+
+    	donde recibe dos parametros
+    	1. la url del metodo a ejecutar por parte del controlador
+    	2. el objeto capturado con toda la inforamcion del formulario etiquetados por la ID
+
+    	action="{{ route('libros.update', $libro->id) }}
+
+
+8. En el controlador se crea el metodo update, que recibe la inforamcion del objeto $libros identificado por su ID
+
+	$libros->id
+
+	Todo ello se envia hacia el metodo que me actualizara la inforamcion en la BD "update"
+
+	Despues de hacer la actualizacion en la Bd, redirige hacia la vista de index con un mensaje de actualizacion de infoamción
+
+
+9. La modificacion podra ser visualizada en la vista index.
+
+
+
+
+Procedimiento de actualización de registros
+--------------------------------------
+
+Para poder darle la funcionalidad al boton del listado de valores de la tabla vamos al archivo de rutas para definir la siguiente ruta:
+
+Debe ser de tipo esperando un id para cutaulziar 
+
+Route::put('/libro/{id}', [LibroController::class, 'update'])->name('libro.update');
+
+Para que esto funcione debemos ir al controlador para definir la actualizacion

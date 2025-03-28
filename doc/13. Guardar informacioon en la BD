@@ -58,7 +58,7 @@ Procedemos a crear con los siguientes valores
 
 entendiendo que el crud
 
-C-> Create => Registrar
-R-> Read => Visualizar la Informacion de la BD
-U-> Update => Actualizar Informacion
+OK C-> Create => Registrar
+OK R-> Read => Visualizar la Informacion de la BD - Libros
+OK U-> Update => Actualizar Informacion
 D-> Delete => Borrar registro a ttraves de in ID

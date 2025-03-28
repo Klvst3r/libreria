@@ -4,12 +4,12 @@ clases - Metododos - Laravl
 
 
 Metodos REST - CRUD
-	Index - contenido COMPLETO de la bd
-	Create - Insertar un registro - formulario
-	Store - Guarda el registro en la bd enviada desde el formualario
-	Show - Visualiza un registro ID
-	Edit - Editar UN registro a travez de un ID
-	Update - formulario para editar UN registro
+	OK - Index - contenido COMPLETO de la bd
+	OK - Create - Insertar un registro - formulario
+	OK - Store - Guarda el registro en la bd enviada desde el formualario
+	[Pendiente] Show - Visualiza un registro ID
+	OK - Edit - Editar UN registro a travez de un ID
+	OK - Update - formulario para editar UN registro
 	Destroy - Eliminar UN registro indicado por un ID
 
 	REST
